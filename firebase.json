@@ -1,45 +1,40 @@
 {
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "routen-d45b7",
-          "appId": "1:828257959412:android:33bc4b6b5d55fc8a11cda1",
-          "fileOutput": "android/app/google-services.json"
-        }
-      },
-      "ios": {
-        "default": {
-          "projectId": "routen-d45b7",
-          "appId": "1:828257959412:ios:1c06a4615c4cf76e11cda1",
-          "uploadDebugSymbols": false,
-          "fileOutput": "ios/Runner/GoogleService-Info.plist"
-        }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "routen-d45b7",
-          "configurations": {
-            "android": "1:828257959412:android:33bc4b6b5d55fc8a11cda1",
-            "ios": "1:828257959412:ios:1c06a4615c4cf76e11cda1"
-          }
-        }
-      }
-    }
-  },
-  "emulators": {
-    "auth": { "port": 9099 },
-    "firestore": { "port": 8080 },
-    "storage": { "port": 9199 },
-    "ui": { "enabled": true },
-    "singleProjectMode": true
-  },
   "firestore": {
     "database": "(default)",
     "location": "nam5",
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "storage": { "rules": "storage.rules" },
-  "remoteconfig": { "template": "remoteconfig.template.json" }
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
 }
