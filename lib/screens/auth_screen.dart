@@ -47,7 +47,7 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       );
     } on FirebaseAuthException catch (e) {
-      // Firebase 인증 예외 처리
+      // Firebase Authentication Exceptions
       if (!mounted) return;
       String message;
       switch (e.code) {

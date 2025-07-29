@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:route_n_firebase/screens/home_screen.dart';
 
@@ -19,12 +20,27 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => AuthScreen(),
+        //'/': (context) => AuthScreen(),
         '/home': (context) => HomeScreen(title: 'RouteN Demo Homepage'),
         '/input': (context) => InputScreen(),
         '/result': (context) => ResultScreen(),
         '/map': (context) => MapScreen(),
       },
+      home: StreamBuilder<User?>(
+        //made for screen moving by authentication status. //not sure how it works
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          if (snapshot.hasData) {
+            return HomeScreen(title: 'RouteN Demo Homepage');
+          }
+          return AuthScreen();
+        },
+      ),
     );
   }
 }
