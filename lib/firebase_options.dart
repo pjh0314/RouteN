@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDMP-lYvYhFy6JFD_lIAaZatLsIU102mqw',
-    appId: '1:61615708166:android:e2b048ebab35427cb0cb87',
-    messagingSenderId: '61615708166',
-    projectId: 'routen-3bec1',
-    storageBucket: 'routen-3bec1.firebasestorage.app',
+    apiKey: 'AIzaSyC0vuWuAolot8eKK9xCXs-GiwFXKMroJvo',
+    appId: '1:828257959412:android:33bc4b6b5d55fc8a11cda1',
+    messagingSenderId: '828257959412',
+    projectId: 'routen-d45b7',
+    storageBucket: 'routen-d45b7.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBjNMWjFQWZF-F9uMdHc5KKAYRZnEMoWBY',
-    appId: '1:61615708166:ios:f2d2d44dfe38ea05b0cb87',
-    messagingSenderId: '61615708166',
-    projectId: 'routen-3bec1',
-    storageBucket: 'routen-3bec1.firebasestorage.app',
+    apiKey: 'AIzaSyDw2lKzVAHksZ1BItyGdGhpgjDUGi48QYA',
+    appId: '1:828257959412:ios:1c06a4615c4cf76e11cda1',
+    messagingSenderId: '828257959412',
+    projectId: 'routen-d45b7',
+    storageBucket: 'routen-d45b7.firebasestorage.app',
     iosBundleId: 'com.example.routeNFirebase',
   );
 
