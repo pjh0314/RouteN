@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "61615708166",
-    "project_id": "routen-3bec1",
-    "storage_bucket": "routen-3bec1.firebasestorage.app"
+    "project_number": "828257959412",
+    "project_id": "routen-d45b7",
+    "storage_bucket": "routen-d45b7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:61615708166:android:e2b048ebab35427cb0cb87",
+        "mobilesdk_app_id": "1:828257959412:android:33bc4b6b5d55fc8a11cda1",
         "android_client_info": {
           "package_name": "com.example.route_n_firebase"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDMP-lYvYhFy6JFD_lIAaZatLsIU102mqw"
+          "current_key": "AIzaSyC0vuWuAolot8eKK9xCXs-GiwFXKMroJvo"
         }
       ],
       "services": {
