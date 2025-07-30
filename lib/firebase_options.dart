@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import flutter_dotenv
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
+/// Default [FirebaseOptions] for use with your Firebase apps.sss
 ///
 /// Example:
 /// ```dart
