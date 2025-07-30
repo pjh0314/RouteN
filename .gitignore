@@ -12,7 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 
-# .env files
+# .env files under credentials directory
 .env
 
 # IntelliJ related
