@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+// need to fix here later
 class _HomeScreenState extends State<HomeScreen> {
   SearchSection _currentSection = SearchSection.none;
 
