@@ -82,7 +82,7 @@ class _AuthScreenState extends State<AuthScreen> {
       });
       debugPrint('Authentication Failed: ${e.toString()}');
     } finally {
-      if (!mounted) {
+      if (mounted) {
         setState(() {
           _isLoading = false; // Finish Loading
         });
