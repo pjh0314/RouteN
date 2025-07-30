@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import flutter_dotenv
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -15,11 +16,28 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
+  // Helper method to ensure dotenv is loaded before accessing values.
+  // This prevents runtime errors if dotenv.load() hasn't been called yet.
+  static void _ensureDotEnvLoaded() {
+    // Corrected: Use dotenv.isInitialized instead of dotenv.isLoaded
+    if (!dotenv.isInitialized) {
+      throw Exception(
+        'DotEnv has not been loaded! Make sure to call dotenv.load() '
+        'in your main() function before initializing Firebase.',
+      );
+    }
+  }
+
   static FirebaseOptions get currentPlatform {
+    _ensureDotEnvLoaded(); // Ensure .env is loaded
+
     if (kIsWeb) {
+      // If you plan to support web, you'll need to add web-specific Firebase options
+      // to your .env file and update this section to load them.
       throw UnsupportedError(
         'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
+        'you can reconfigure this by running the FlutterFire CLI again, '
+        'or by adding web options to your .env file and updating this code.',
       );
     }
     switch (defaultTargetPlatform) {
@@ -49,21 +67,30 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC0vuWuAolot8eKK9xCXs-GiwFXKMroJvo',
-    appId: '1:828257959412:android:33bc4b6b5d55fc8a11cda1',
-    messagingSenderId: '828257959412',
-    projectId: 'routen-d45b7',
-    storageBucket: 'routen-d45b7.firebasestorage.app',
-  );
+  // FirebaseOptions for Android, now dynamically loaded from .env
+  // Removed 'const' keyword as values are now loaded at runtime.
+  static FirebaseOptions get android {
+    _ensureDotEnvLoaded(); // Ensure .env is loaded
+    return FirebaseOptions(
+      apiKey: dotenv.env['FIREBASE_ANDROID_API_KEY']!,
+      appId: dotenv.env['FIREBASE_ANDROID_APP_ID']!,
+      messagingSenderId: dotenv.env['FIREBASE_ANDROID_MESSAGING_SENDER_ID']!,
+      projectId: dotenv.env['FIREBASE_ANDROID_PROJECT_ID']!,
+      storageBucket: dotenv.env['FIREBASE_ANDROID_STORAGE_BUCKET']!,
+    );
+  }
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDw2lKzVAHksZ1BItyGdGhpgjDUGi48QYA',
-    appId: '1:828257959412:ios:1c06a4615c4cf76e11cda1',
-    messagingSenderId: '828257959412',
-    projectId: 'routen-d45b7',
-    storageBucket: 'routen-d45b7.firebasestorage.app',
-    iosBundleId: 'com.example.routeNFirebase',
-  );
-
+  // FirebaseOptions for iOS, now dynamically loaded from .env
+  // Removed 'const' keyword as values are now loaded at runtime.
+  static FirebaseOptions get ios {
+    _ensureDotEnvLoaded(); // Ensure .env is loaded
+    return FirebaseOptions(
+      apiKey: dotenv.env['FIREBASE_IOS_API_KEY']!,
+      appId: dotenv.env['FIREBASE_IOS_APP_ID']!,
+      messagingSenderId: dotenv.env['FIREBASE_IOS_MESSAGING_SENDER_ID']!,
+      projectId: dotenv.env['FIREBASE_IOS_PROJECT_ID']!,
+      storageBucket: dotenv.env['FIREBASE_IOS_STORAGE_BUCKET']!,
+      iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID']!,
+    );
+  }
 }
