@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';
 import 'screens/search_screen.dart';
-import 'screens/auth_screen.dart';
+import 'screens/authentication/auth_screen.dart';
 import 'screens/input_screen.dart';
 import 'screens/map_screen.dart';
 import 'screens/result_screen.dart';
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: '/',
       routes: {
         //'/': (context) => AuthScreen(),
         '/home': (context) => HomeScreen(),
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder<User?>(
         //made for screen moving by authentication status. //not sure how it works
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),

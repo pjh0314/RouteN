@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:route_n_firebase/screens/authentication/sign_up_screen.dart';
 import 'package:route_n_firebase/screens/home_screen.dart';
 
 //import 'home_screen.dart';
@@ -89,14 +90,14 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  Future<void> _signUp() async {
-    await _authenticate(
-      () => FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      ),
-    );
-  }
+  // Future<void> _signUp() async {
+  //   await _authenticate(
+  //     () => FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //       email: _emailController.text.trim(),
+  //       password: _passwordController.text.trim(),
+  //     ),
+  //   );
+  // }
 
   Future<void> _signIn() async {
     await _authenticate(
@@ -205,7 +206,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                     const SizedBox(height: 16),
                     OutlinedButton(
-                      onPressed: _signUp,
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SignUpScreen(),
+                          ),
+                        );
+                      },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Theme.of(context).colorScheme.primary,
                         side: BorderSide(
