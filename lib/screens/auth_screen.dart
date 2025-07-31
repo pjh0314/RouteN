@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:route_n_firebase/screens/home_screen.dart';
 
-import 'home_screen.dart';
+//import 'home_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -37,13 +38,11 @@ class _AuthScreenState extends State<AuthScreen> {
     try {
       UserCredential userCredential = await authFunction();
       debugPrint('Authentication Success: ${userCredential.user?.email}');
-      // After certification move to Homescreen
+      // After certification move to Searchscreen
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(
-            title: 'RouteN Demo Hompepage',
-          ), // move to HomeScreen
+          builder: (context) => const HomeScreen(), // move to HomeScreen
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -114,6 +113,18 @@ class _AuthScreenState extends State<AuthScreen> {
       appBar: AppBar(
         title: const Text('RouteN Authentication'),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              if (!context.mounted) return;
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
         foregroundColor: Colors.white,
       ),
       body: Center(

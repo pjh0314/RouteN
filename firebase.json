@@ -37,7 +37,7 @@
     },
     "singleProjectMode": true,
     "hosting": {
-      "port": 5000
+      "port": 5500
     }
   },
   "flutter": {

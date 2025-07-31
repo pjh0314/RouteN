@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:route_n_firebase/screens/home_screen.dart';
 
+import 'screens/home_screen.dart';
+import 'screens/search_screen.dart';
 import 'screens/auth_screen.dart';
 import 'screens/input_screen.dart';
 import 'screens/map_screen.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         //'/': (context) => AuthScreen(),
-        '/home': (context) => HomeScreen(title: 'RouteN Demo Homepage'),
+        '/home': (context) => HomeScreen(),
+        '/search': (context) => SearchScreen(title: 'Anywhere Everywhere'),
         '/input': (context) => InputScreen(),
         '/result': (context) => ResultScreen(),
         '/map': (context) => MapScreen(),
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
             );
           }
           if (snapshot.hasData) {
-            return HomeScreen(title: 'RouteN Demo Homepage');
+            return HomeScreen();
           }
           return AuthScreen();
         },
