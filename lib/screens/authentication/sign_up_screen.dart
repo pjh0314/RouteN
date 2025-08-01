@@ -159,6 +159,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _bioController,
                 decoration: const InputDecoration(labelText: 'Bio'),
               ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                keyboardType: TextInputType.visiblePassword,
+              ),
               const SizedBox(height: 24),
 
               if (_errorMessage != null) ...[
