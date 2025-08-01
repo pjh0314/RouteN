@@ -71,6 +71,4 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - credentials/.env # 이 줄을 추가합니다.
-    # 만약 credentials 폴더 안에 다른 파일들도 앱에 포함해야 한다면
-    # - credentials/  # 이렇게 폴더 자체를 추가할 수도 있습니다.
+    - .env
