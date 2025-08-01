@@ -29,8 +29,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
-    sdk: flutter
-    
+    sdk: flutter  
+  google_maps_flutter: ^2.4.0  # (버전은 최신 안정 버전으로 맞춰서, pub.dev에서 확인)
+  permission_handler: ^10.2.0  # (위치 권한 필요 시)
+  geocoding: ^2.0.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -42,6 +44,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^30.1.41
   intl: ^0.18.1
   flutter_dotenv: ^5.1.0
+
+
 
 dev_dependencies:
   flutter_test:
