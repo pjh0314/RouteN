@@ -31,20 +31,22 @@ class MyApp extends StatelessWidget {
         '/community': (context) => CommunityScreen(),
       },
       home: StreamBuilder<User?>(
-        //made for screen moving by authentication status. //not sure how it works
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(body: Center(child: Text('Something went wrong')));
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting &&
-              !snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
           }
+          if (snapshot.hasError) {
+            return Scaffold(
+              body: Center(
+                child: Text('Something went wrong: ${snapshot.error}'),
+              ),
+            );
+          }
 
+          // 로그인 돼 있으면 Home, 아니면 Auth
           return snapshot.hasData ? const HomeScreen() : const AuthScreen();
         },
       ),

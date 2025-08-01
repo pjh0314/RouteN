@@ -8,6 +8,16 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+def getMapsApiKey() {
+    def Properties properties = new Properties()
+    def localPropertiesFile = rootProject.file('local.properties')
+    if (localPropertiesFile.exists()) {
+        properties.load(new FileInputStream(localPropertiesFile))
+        return properties.getProperty('MAPS_API_KEY') ?: ""
+    }
+    return ""
+}
+
 android {
     namespace = "com.example.route_n_firebase"
     compileSdk = flutter.compileSdkVersion
@@ -31,6 +41,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders = [ googleMapsApiKey: getMapsApiKey() ]
     }
 
     buildTypes {

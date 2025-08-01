@@ -44,6 +44,18 @@ class MyListScreen extends StatelessWidget {
               return ListTile(
                 title: Text('$city ($theme)'),
                 subtitle: Text('$startDate - $endDate'),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/map',
+                    arguments: {
+                      'city': city,
+                      'start': startDate,
+                      'end': endDate,
+                      'theme': theme,
+                    },
+                  );
+                },
               );
             },
           );
