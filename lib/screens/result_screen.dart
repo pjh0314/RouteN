@@ -52,6 +52,19 @@ class _ResultScreenState extends State<ResultScreen> {
     }
   }
 
+  Future<List<Map<String, dynamic>>> _fetchRecommendedPlaces(
+    String city,
+    String theme,
+  ) async {
+    final docId = '${city}_$theme';
+    final doc = await _fireStore.collection('itineraries').doc(docId).get();
+
+    if (!doc.exists || doc.data() == null) return [];
+
+    final List<dynamic> rawPlaces = doc.data()!['places'];
+    return rawPlaces.cast<Map<String, dynamic>>();
+  }
+
   @override
   Widget build(BuildContext context) {
     final args =
@@ -81,18 +94,41 @@ class _ResultScreenState extends State<ResultScreen> {
             icon: const Icon(Icons.logout),
           ),
         ],
-        title: const Text('Result'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('City: $city', style: const TextStyle(fontSize: 18)),
-            Text('Period: $start ~ $end', style: const TextStyle(fontSize: 18)),
-            Text('Theme: $theme', style: const TextStyle(fontSize: 18)),
-          ],
-        ),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: _fetchRecommendedPlaces(city, theme),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final places = snapshot.data ?? [];
+
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView(
+              children: [
+                Text('City: $city', style: const TextStyle(fontSize: 18)),
+                Text(
+                  'Period: $start ~ $end',
+                  style: const TextStyle(fontSize: 18),
+                ),
+                Text('Theme: $theme', style: const TextStyle(fontSize: 18)),
+                const SizedBox(height: 20),
+                const Text(
+                  'Recommended Places:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ...places.map(
+                  (place) => ListTile(
+                    title: Text(place['name']),
+                    subtitle: Text(place['description']),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
