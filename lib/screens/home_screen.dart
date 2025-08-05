@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:route_n_firebase/upload_itinerary_screen.dart';
 import 'community_screen.dart';
 import 'my_list_screen.dart';
 import 'search_screen.dart';
@@ -43,6 +44,18 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Community'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UploadItineraryScreen(),
+                  ),
+                );
+              },
+              child: const Text('🛠 Upload Itinerary DB'),
             ),
           ],
         ),

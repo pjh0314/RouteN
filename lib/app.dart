@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:route_n_firebase/upload_itinerary_screen.dart';
 
 import 'screens/my_list_screen.dart';
 import 'screens/authentication/auth_screen.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/map': (context) => MapScreen(),
         '/list': (context) => MyListScreen(),
         '/community': (context) => CommunityScreen(),
+        '/upload': (context) => UploadItineraryScreen(),
       },
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
             );
           }
           if (snapshot.hasError) {
+            print('🔥 Firebase Auth Error: ${snapshot.error}');
             return Scaffold(
               body: Center(
                 child: Text('Something went wrong: ${snapshot.error}'),

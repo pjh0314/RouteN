@@ -62,6 +62,47 @@ class UploadItineraryScreen extends StatelessWidget {
         'lng': -73.9855,
       },
     ],
+    'Tokyo_Couple': [
+      {
+        'name': 'Tokyo Tower',
+        'description': 'Romantic view of the city from the iconic red tower.',
+        'lat': 35.6586,
+        'lng': 139.7454,
+      },
+      {
+        'name': 'Odaiba Seaside Park',
+        'description':
+            'Waterfront area with shopping and night views for couples.',
+        'lat': 35.6272,
+        'lng': 139.7766,
+      },
+      {
+        'name': 'TeamLab Planets',
+        'description': 'Immersive art experience perfect for a couple date.',
+        'lat': 35.6198,
+        'lng': 139.8007,
+      },
+    ],
+    'Tokyo_Friends': [
+      {
+        'name': 'Shibuya Crossing',
+        'description': 'World-famous scramble crossing, fun with friends.',
+        'lat': 35.6595,
+        'lng': 139.7005,
+      },
+      {
+        'name': 'Karaoke-kan Shibuya',
+        'description': 'Popular karaoke chain great for groups.',
+        'lat': 35.6592,
+        'lng': 139.7004,
+      },
+      {
+        'name': 'Takeshita Street',
+        'description': 'Trendy shopping street ideal for group selfies.',
+        'lat': 35.6703,
+        'lng': 139.7020,
+      },
+    ],
     //여기에 추가해서 한번에 올리면 DB에 저장할수 있음 근데 아직 DB로 올리진 않음 ㅈㄴ귀찮아
   };
 
