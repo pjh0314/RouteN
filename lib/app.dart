@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
             );
           }
           if (snapshot.hasError) {
-            print('🔥 Firebase Auth Error: ${snapshot.error}');
             return Scaffold(
               body: Center(
                 child: Text('Something went wrong: ${snapshot.error}'),
