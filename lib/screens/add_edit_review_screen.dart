@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:uuid/uuid.dart';
+import 'package:path/path.dart' as path;
 
 class AddEditReviewScreen extends StatefulWidget {
   final String? reviewId;
@@ -58,14 +60,36 @@ class _AddEditReviewScreenState extends State<AddEditReviewScreen> {
 
   Future<List<String>> _uploadNewImages() async {
     final uploaded = <String>[];
+
     for (final f in _newPickedFiles) {
-      final ref = FirebaseStorage.instance.ref().child(
-        'review_images/${DateTime.now().millisecondsSinceEpoch}.jpg',
-      );
-      await ref.putFile(f);
-      final url = await ref.getDownloadURL();
-      uploaded.add(url);
+      try {
+        // 실제 파일 확장자 가져오기 (.jpg, .png 등)
+        final ext = path.extension(f.path).isNotEmpty
+            ? path.extension(f.path)
+            : '.jpg';
+        // UUID를 붙여서 절대 중복되지 않는 파일명 생성
+        final fileName =
+            '${DateTime.now().millisecondsSinceEpoch}_${const Uuid().v4()}$ext';
+
+        final ref = FirebaseStorage.instance.ref().child(
+          'review_images/$fileName',
+        );
+
+        // 업로드 실행
+        final uploadTask = await ref.putFile(f);
+        if (uploadTask.state == TaskState.success) {
+          final url = await ref.getDownloadURL();
+          uploaded.add(url);
+        } else {
+          print('DEBUG: Failed to upload file ${f.path}');
+        }
+      } on FirebaseException catch (e) {
+        print('DEBUG: Firebase upload error - ${e.code} for file ${f.path}');
+      } catch (e) {
+        print('DEBUG: Unknown error during upload - $e');
+      }
     }
+
     return uploaded;
   }
 
