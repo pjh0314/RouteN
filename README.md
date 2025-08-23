@@ -150,7 +150,7 @@ We welcome contributions! Please feel free to submit a Pull Request. For major c
 Joonhyung Park: 0314pjh@gmail.com
 Minsoo Ku: ku.minsoo0314@gmail.com
 
-Project Link: (https://github.com/0314pjh/routen)
+Project Link: (https://github.com/pjh0314/routen)
 
 ## Acknowledgments 🙏
 
