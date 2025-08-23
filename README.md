@@ -145,15 +145,12 @@ We welcome contributions! Please feel free to submit a Pull Request. For major c
 - [ ] Social features expansion (follow users, travel groups)
 - [ ] Integration with travel booking platforms
 
-## License 📄
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact 📧
 
-Your Name - [@Joonhyung Park, Minsoo Ku](https://twitter.com/yourtwitter) - your.email@example.com
+Joonhyung Park: 0314pjh@gmail.com
+Minsoo Ku: ku.minsoo0314@gmail.com
 
-Project Link: [https://github.com/yourusername/routen](https://github.com/yourusername/routen)
+Project Link: (https://github.com/0314pjh/routen)
 
 ## Acknowledgments 🙏
 
